@@ -10,4 +10,5 @@ const Template: StoryFn<typeof Button> = (args) => <Button {...args} />;
 export const Default = Template.bind({});
 Default.args = {
   children: "Button",
+  className: "!h-[50vh]",
 };

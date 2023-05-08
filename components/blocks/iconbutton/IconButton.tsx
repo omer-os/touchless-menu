@@ -1,6 +1,6 @@
 import { cva, type VariantProps } from "class-variance-authority";
 
-export const buttonStyles = cva(
+export const IconButtonStyles = cva(
   `
   button 
   rounded 
@@ -8,11 +8,13 @@ export const buttonStyles = cva(
   transition-all
   active:brightness-90 
   hover:brightness-110
-  flex items-center gap-2
+  fill-current
 `,
   {
     variants: {
       intent: {
+        white: "bg-white text-white",
+
         primary: "bg-primary-600 text-white",
         secondary: "bg-secondary-600 text-white",
         success: "bg-success-600 text-white",
@@ -21,10 +23,10 @@ export const buttonStyles = cva(
           "border border-primary-600 text-primary-600 hover:bg-primary-600/10 active:bg-primary-600/20",
       },
       size: {
-        sm: ["text-sm", "py-1", "px-2"],
-        md: "text-primary py-2 px-4",
-        lg: ["text-lg", "py-3", "px-6"],
-        xl: ["text-xl", "py-4", "px-8"],
+        sm: "p-2",
+        md: "text-primary p-4",
+        lg: "p-5",
+        xl: "p-6",
       },
       font: {
         bold: "font-bold",
@@ -32,53 +34,67 @@ export const buttonStyles = cva(
       },
       width: {
         full: "w-full",
-        max: "w-max",
+        auto: "w-auto",
+      },
+
+      IconColor: {
+        auto: "text-auto",
+        white: "text-white",
+        black: "!text-black",
+        zinc: "text-zinc-400",
+      },
+
+      rounded: {
+        sm: "rounded-sm",
+        md: "rounded-md",
+        lg: "rounded-lg",
+        full: "rounded-full",
       },
     },
     defaultVariants: {
-      intent: "primary",
+      intent: "bordered",
       size: "md",
-      width: "max",
+      width: "auto",
       font: "normal",
+      IconColor: "auto",
+      rounded: "md",
     },
   }
 );
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonStyles> {
+    VariantProps<typeof IconButtonStyles> {
   children: React.ReactNode;
 
-  startIcon?: React.ReactNode;
-  endIcon?: React.ReactNode;
-
-  className?: string;
+  onClick?: () => void;
 }
 
-const Button: React.FC<ButtonProps> = ({
+const IconButton: React.FC<ButtonProps> = ({
   className,
   intent,
   size,
   width,
   font,
-  startIcon,
-  endIcon,
+  IconColor,
+  rounded,
   ...props
-}) => {
-  const generatedClasses = buttonStyles({
-    intent,
-    size,
-    className,
-    width,
-    font,
-  });
-  return (
-    <button className={generatedClasses} {...props}>
-      {startIcon}
-      {props.children}
-      {endIcon}
-    </button>
-  );
-};
+}) => (
+  <button
+    className={IconButtonStyles({
+      intent,
+      size,
+      className,
+      width,
+      font,
+      IconColor,
+      rounded,
+    })}
+    onClick={props.onClick}
+    {...props}
+  >
+    {props.children}
+  </button>
+);
 
-export default Button;
+export default IconButton;
