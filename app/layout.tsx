@@ -1,4 +1,4 @@
-import "./globals.css";
+import "@styles/globals.css";
 import { Roboto } from "next/font/google";
 
 const robotoFont = Roboto({ subsets: ["latin"], weight: "400" });
