@@ -51,6 +51,9 @@ devDependencies:
   '@storybook/blocks':
     specifier: 7.0.9
     version: 7.0.9(react-dom@18.2.0)(react@18.2.0)
+  '@storybook/cli':
+    specifier: ^7.0.9
+    version: 7.0.9
   '@storybook/nextjs':
     specifier: 7.0.9
     version: 7.0.9(@babel/core@7.21.8)(esbuild@0.17.18)(next@13.4.1)(react-dom@18.2.0)(react@18.2.0)(typescript@5.0.4)(webpack@5.82.0)

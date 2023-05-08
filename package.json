@@ -7,9 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
-    "serve-storybook": "serve storybook-static"
+    "storybook": "storybook dev -p 6006"
   },
   "dependencies": {
     "@types/node": "20.1.0",
