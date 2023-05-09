@@ -1,7 +1,7 @@
 import { FaSearch } from "react-icons/fa";
 import { StoryFn } from "@storybook/react";
 import { useState } from "react";
-import TextInput from "../components/elements/input/TextInput";
+import TextInput from "../../components/elements/input/TextInput";
 
 export default {
   title: "elements/TextInput",

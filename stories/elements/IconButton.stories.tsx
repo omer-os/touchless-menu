@@ -1,4 +1,4 @@
-import IconButton from "../components/elements/iconbutton/IconButton";
+import IconButton from "../../components/elements/iconbutton/IconButton";
 import { StoryFn } from "@storybook/react";
 import { FaShoppingCart } from "react-icons/fa";
 

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import AmountCounter from "../components/blocks/Counter/AmountCounter";
+import AmountCounter from "../../components/blocks/Counter/AmountCounter";
 import { StoryFn } from "@storybook/react";
 
 export default {

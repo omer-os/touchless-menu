@@ -1,9 +1,9 @@
 import { StoryFn } from "@storybook/react";
-import Badge from "../components/blocks/badge/Badge";
-import IconButton from "../components/elements/iconbutton/IconButton";
+import Badge from "../../components/elements/badge/Badge";
+import IconButton from "../../components/elements/iconbutton/IconButton";
 
 export default {
-  title: "blocks/Badge",
+  title: "elements/Badge",
   component: Badge,
 };
 

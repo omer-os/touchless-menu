@@ -2,7 +2,7 @@ import { VariantProps, cva } from "class-variance-authority";
 import React from "react";
 
 const styles = cva(
-  `absolute -top-1 -right-1 rounded-full flex items-center justify-center`,
+  `absolute -top-1.5 -right-1.5 rounded-full flex items-center justify-center`,
   {
     variants: {
       intent: {

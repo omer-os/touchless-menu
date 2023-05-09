@@ -1,3 +1,4 @@
+import MainLayout from "@/components/pages/layouts/MainLayout";
 import "@styles/globals.css";
 import { Roboto } from "next/font/google";
 
@@ -15,7 +16,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={robotoFont.className}>{children}</body>
+      <body className={robotoFont.className}>
+        <MainLayout>{children}</MainLayout>
+      </body>
     </html>
   );
 }

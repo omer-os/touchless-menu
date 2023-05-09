@@ -1,4 +1,4 @@
-import ButtonLink from "../components/elements/link/ButtonLink";
+import ButtonLink from "../../components/elements/link/ButtonLink";
 import { StoryFn } from "@storybook/react";
 
 export default {

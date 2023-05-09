@@ -1,8 +1,8 @@
 import { StoryFn } from "@storybook/react";
-import MenuCategoryCard from "../components/blocks/cards/MenuCategoryCard";
+import MenuCategoryCard from "../../components/modules/cards/MenuCategoryCard";
 
 export default {
-  title: "blocks/MenuCategoryCard",
+  title: "modules/MenuCategoryCard",
   component: MenuCategoryCard,
 };
 

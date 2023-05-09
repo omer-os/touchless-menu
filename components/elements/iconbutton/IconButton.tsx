@@ -13,7 +13,7 @@ export const IconButtonStyles = cva(
   {
     variants: {
       intent: {
-        white: "bg-white text-white",
+        white: "bg-white text-zinc-400",
 
         primary: "bg-primary-600 text-white",
         secondary: "bg-secondary-600 text-white",
@@ -21,10 +21,12 @@ export const IconButtonStyles = cva(
         ghost: "bg-transparent text-black hover:bg-black/20 active:bg-black/30",
         bordered:
           "border border-primary-600 text-primary-600 hover:bg-primary-600/10 active:bg-primary-600/20",
+
+        semiGhost: "bg-primary-200/40 text-primary-600 ring-primary-600 ring-2",
       },
       size: {
         sm: "p-2",
-        md: "text-primary p-4",
+        md: "text-primary p-3",
         lg: "p-5",
         xl: "p-6",
       },

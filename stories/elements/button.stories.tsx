@@ -1,4 +1,4 @@
-import Button from "../components/elements/button/Button";
+import Button from "../../components/elements/button/Button";
 import { StoryFn } from "@storybook/react";
 
 export default {
