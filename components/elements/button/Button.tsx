@@ -2,7 +2,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 export const buttonStyles = cva(
   `
-  button 
+  
   rounded 
   active:scale-95 
   transition-all

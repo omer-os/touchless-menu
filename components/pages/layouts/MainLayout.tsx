@@ -1,6 +1,8 @@
+"use client";
 import LeftSideBar from "@/components/modules/sidebar/LeftSideBar";
 import React from "react";
 import MainNavBar from "../../modules/nav/MainNavBar";
+import { AnimatePresence, motion } from "framer-motion";
 import RightSideBar from "@/components/modules/sidebar/RightSideBar";
 
 export default function MainLayout({
@@ -9,15 +11,31 @@ export default function MainLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="h-screen flex">
-      <LeftSideBar />
+    <div
+      className="h-screen  grid 
+    
+    lg:grid-cols-[5em_minmax(30em,_1fr)_minmax(min-content,_28em)]
 
-      <div className="flex flex-col flex-1">
-        <MainNavBar />
-        <div className="flex-1 overflow-y-scroll">{children}</div>
-      </div>
+    sm:grid-cols-[5em_minmax(22em,_1fr)]
+    grid-cols-1
 
-      <RightSideBar />
+    grid-rows-1
+
+    w-full
+
+
+    "
+    >
+      <>
+        <LeftSideBar key={"jrblibrbiyrugv"} />
+
+        <div key={"ojuerbpiuqeyvfrnoi"} className="flex flex-col flex-1">
+          <MainNavBar />
+          <div className="py-4 sm:px-7 px-4 overflow-y-scroll">{children}</div>
+        </div>
+
+        <RightSideBar />
+      </>
     </div>
   );
 }

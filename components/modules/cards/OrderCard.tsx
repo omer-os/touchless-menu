@@ -22,7 +22,6 @@ interface MenuItemCardProps
   img: string;
   title: string;
   price: string;
-  amount: string;
   category: string;
 }
 
@@ -31,10 +30,9 @@ export default function OrderCard({
   category,
   price,
   img,
-  amount,
   className,
 }: MenuItemCardProps) {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
 
   const styles = OrderCardStyles({
     className,
@@ -42,7 +40,7 @@ export default function OrderCard({
 
   return (
     <div className={styles}>
-      <div className="min-w-[8rem] h-28 rounded-lg">
+      <div className="min-w-[8rem] h-[7rem] rounded-lg">
         <img
           src={img}
           alt={`Image of ${title}`}
@@ -56,11 +54,18 @@ export default function OrderCard({
         </div>
         <div className="category text-sm text-zinc-400">{category}</div>
 
-        <AmountCounter className="mt-auto" State={count} setState={setCount} />
+        <AmountCounter
+          className="mt-auto"
+          State={count}
+          setState={setCount}
+          min={1}
+        />
       </div>
 
       <div className="absolute bottom-2 right-2">
-        <div className="price text-primary-600 text-sm font-bold">{price}</div>
+        <div className="price text-primary-600 text-sm font-bold">
+          {count} x {price}
+        </div>
       </div>
     </div>
   );

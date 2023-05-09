@@ -68,11 +68,11 @@ export default function CategoriesList(props: { categories: categoryType[] }) {
       <div className="relative p-3">
         <div
           ref={scrollContainerRef}
-          className="flex p-1 pb-2 gap-10 overflow-x-scroll"
+          className="flex p-1 pb-2 gap-4 overflow-x-scroll"
         >
-          {props.categories.map((category) => (
+          {props.categories.map((category, index) => (
             <MenuCategoryCard
-              key={category.name}
+              key={category.name + index}
               name={category.name}
               href={category.link}
               img={category.img}

@@ -36,7 +36,7 @@ export default function MenuItemCard({
   });
   return (
     <Link href={link} className={styles}>
-      <div className="img h-[12em]">
+      <div className="img md:h-[12em] h-[8em]">
         <img
           src={img}
           className="w-full h-full object-cover"
@@ -48,7 +48,7 @@ export default function MenuItemCard({
         <h1 className="font-bold">{title}</h1>
 
         <div className="flex gap-2 mt-2 items-baseline">
-          <div className="font-bold text-xl">{price}</div>
+          <div className="font-bold md:text-xl">{price}</div>
           <div className="text-sm text-gray-500">/person</div>
         </div>
       </div>

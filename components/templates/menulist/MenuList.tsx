@@ -13,7 +13,7 @@ export default function MenuList({ menus }: { menus: MenuType[] }) {
     <div className="flex flex-col">
       <div className="text-2xl font-bold">Menu</div>
 
-      <div className="grid mt-4 md:grid-cols-4 grid-cols-2 gap-4">
+      <div className="grid mt-4 xl:grid-cols-3 grid-cols-2 gap-4">
         {menus.map((menu, index) => (
           <MenuItemCard
             key={menu.link + index}

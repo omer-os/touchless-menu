@@ -8,7 +8,7 @@ import { FaSadCry } from "react-icons/fa";
 export default function page() {
   return (
     <div>
-      {/* <Home /> */}
+      <Home />
     </div>
   );
 }
