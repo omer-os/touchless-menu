@@ -1,8 +1,8 @@
-import Button from "../components/blocks/button/Button";
+import Button from "../components/elements/button/Button";
 import { StoryFn } from "@storybook/react";
 
 export default {
-  title: "blocks/Button",
+  title: "elements/Button",
   component: Button,
 };
 

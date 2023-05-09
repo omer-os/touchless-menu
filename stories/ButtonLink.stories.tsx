@@ -1,8 +1,8 @@
+import ButtonLink from "../components/elements/link/ButtonLink";
 import { StoryFn } from "@storybook/react";
-import ButtonLink from "../components/blocks/link/ButtonLink";
 
 export default {
-  title: "blocks/ButtonLink",
+  title: "elements/ButtonLink",
   component: ButtonLink,
 };
 

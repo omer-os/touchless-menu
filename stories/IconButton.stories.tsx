@@ -1,9 +1,9 @@
-import IconButton from "../components/blocks/iconbutton/IconButton";
+import IconButton from "../components/elements/iconbutton/IconButton";
 import { StoryFn } from "@storybook/react";
 import { FaShoppingCart } from "react-icons/fa";
 
 export default {
-  title: "blocks/IconButton",
+  title: "elements/IconButton",
   component: IconButton,
 };
 
