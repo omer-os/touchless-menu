@@ -7,7 +7,9 @@ type PageProps = {
 
 export default async function CategoriesList({ restaurantId }: PageProps) {
   const res = await fetch(
-    `${baseUrl}/api/restaurants/${restaurantId}/categories`
+    `${baseUrl}/api/restaurants/${restaurantId}/categories`, {
+      cache: "no-cache",
+    }
   );
   const categories: INTcategory = await res.json();
 

@@ -3,7 +3,9 @@ import Link from "next/link";
 import React from "react";
 
 export default async function page() {
-  const res = await fetch(`${baseUrl}/api/restaurants`);
+  const res = await fetch(`${baseUrl}/api/restaurants`, {
+    cache: "no-cache",
+  });
   const restaurants: INTRestaurant[] = await res.json();
   return (
     <div className="pt-6">
