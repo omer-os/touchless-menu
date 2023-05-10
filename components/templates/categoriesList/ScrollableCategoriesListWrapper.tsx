@@ -75,6 +75,7 @@ export default function ScrollableCategoriesListWrapper({
               numberOfItems={category.items.length}
               intent={
                 pathname === category.name.toLowerCase().replace(/\s+/g, "-")
+                || pathname === category._id
                   ? "selected"
                   : "regular"
               }
@@ -94,7 +95,7 @@ export default function ScrollableCategoriesListWrapper({
             </IconButton>
           </div>
         )}
-        {scrollRight && (
+        {scrollRight && categories && categories.length >= 2 && (
           <div>
             <IconButton
               rounded={"full"}

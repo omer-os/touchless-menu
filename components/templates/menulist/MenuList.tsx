@@ -11,11 +11,16 @@ export default function MenuList({
 }) {
   const menus = categoryname
     ? getCategoryBySubdomain(restaurantId, categoryname)
-    : null;
+    : {
+        items: [],
+      };
 
   return (
-    <div className="flex flex-col md:mt-0 mt-2">
+    <div className="flex flex-col md:mt-3 mt-2">
       <div className="grid  xl:grid-cols-3 grid-cols-2 md:gap-4 gap-6">
+        {menus?.items.length === 0 && (
+          <div className="font-bold capitalize text-lg">select a category</div>
+        )}
         {menus?.items.map((menu, index) => (
           <MenuItemCard
             key={menu._id + index}

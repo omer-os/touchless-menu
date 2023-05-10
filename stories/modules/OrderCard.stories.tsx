@@ -6,16 +6,22 @@ export default {
   component: OrderCard,
 };
 
-const Template: StoryFn<typeof OrderCard> = (args) => <div className="grid grid-cols-2 gap-3">
-  <OrderCard {...args} />
-  <OrderCard {...args} />
-  <OrderCard {...args} />
-  <OrderCard {...args} />
-</div>;
+const Template: StoryFn<typeof OrderCard> = (args) => (
+  <div className="grid grid-cols-2 gap-3">
+    <OrderCard
+      order={{
+        _id: "1",
+        restaurant_id: "1",
+        name: "Burger",
+        description: "Burger",
+        image:
+          "https://images.unsplash.com/photo-1462027076063-1ceabb252dbd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8Q2hpY2tlbiUyMENhZXNhciUyMFdyYXB8ZW58MHx8MHx8&auto=format&fit=crop&w=1000&q=60",
+        category: "Burger",
+        price: "10",
+        amount: 1,
+      }}
+    />
+  </div>
+);
 export const Default = Template.bind({});
-Default.args = {
-  title: "Chicken Burger",
-  category: "Burger",
-  price: "Rp. 20.000",
-  img: "https://images.unsplash.com/photo-1683526922751-fcb1ac2eafe0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyNXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60",
-};
+Default.args = {};

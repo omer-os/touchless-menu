@@ -4,8 +4,9 @@ import FoodOption from "@/components/blocks/FoodOption/FoodOption";
 import Button from "@/components/elements/button/Button";
 import IconButton from "@/components/elements/iconbutton/IconButton";
 import { useOrderContext } from "@/components/pages/layouts/MainLayoutWrapper";
+import { getMenuItem } from "@/lib/GetData";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaShopify } from "react-icons/fa";
 import { FiChevronLeft } from "react-icons/fi";
 
@@ -17,27 +18,53 @@ export default function page({
     menuId: string;
   };
 }) {
-  const [Count, setCount] = useState(1);
+  const [Count, setCount] = useState(
+    useOrderContext().Orders.find((order) => order._id === params.menuId)
+      ?.amount || 1
+  );
   const { Orders, setOrders } = useOrderContext();
+
+  useEffect(() => {
+    setOrders((prev) => {
+      const index = prev.findIndex((item) => item._id === params.menuId);
+
+      if (index === -1) return prev;
+
+      prev[index].amount = Count;
+
+      return [...prev];
+    });
+  }, [Count]);
+
+  const menuItem = getMenuItem(params.restaurantId, params.menuId);
 
   return (
     <div className="">
       <div className="flex sm:static absolute top-60 left-0 w-full sm:px-0 px-6 z-50 rounded-t-2xl bg-white p-3 flex-wrap gap-5 pb-10">
         <div className="flex w-full md:w-max flex-col">
+          <Link className="mb-4 w-max" href={`/${params.restaurantId}/${menuItem?.category_id}`}>
+            <Button
+              size={"md"}
+              className="sm:flex hidden shadow-xl"
+              intent={"bordered"}
+            >
+              <FiChevronLeft size={25} />
+              Go Back
+            </Button>
+          </Link>
           <div className="img sm:flex hidden h-[20em] w-full md:w-[24em]">
             <img
               className="w-full h-full object-cover rounded-xl"
-              src="https://picsum.photos/400/500"
+              src={menuItem?.image || ""}
             />
           </div>
 
           <div className="flex relative z-30 flex-col mt-6">
             <h1 className="sm:text-2xl text-xl font-bold capitalize">
-              Classic Burger with Cheese
+              {menuItem?.name}
             </h1>
             <div className="text-zinc-400 mt-2 sm:text-lg">
-              Beef Patty, Cheese, Lettuce, Tomato, Onion, Pickles, Ketchup,
-              Mustard
+              {menuItem?.description}
             </div>
           </div>
         </div>
@@ -91,7 +118,8 @@ export default function page({
             <div className="h-[0.07em] mt-5 w-full rounded-full bg-zinc-300" />
 
             <div className="sm:text-2xl text-xl mt-2 font-bold">
-              Total Price : 12.000 IQD
+              Total Price :{" "}
+              {(menuItem?.base_price || 0) * Count  } IQD
             </div>
 
             <div className="flex mt-3 gap-3">
@@ -99,7 +127,35 @@ export default function page({
                 <FaShopify size={25} />
               </IconButton>
 
-              <Button width={"full"} font={"bold"}>
+              <Button
+                onClick={() => {
+                  const existingOrderIndex = Orders.findIndex(
+                    (order) => order._id === params.menuId
+                  );
+
+                  if (existingOrderIndex !== -1) {
+                    const updatedOrders = [...Orders];
+                    updatedOrders[existingOrderIndex].amount += Count;
+                    setOrders(updatedOrders);
+                  } else {
+                    setOrders([
+                      ...Orders,
+                      {
+                        _id: params.menuId,
+                        restaurant_id: params.restaurantId,
+                        name: menuItem?.name || "",
+                        description: menuItem?.description || "",
+                        image: menuItem?.image || "",
+                        category: menuItem?.type || "",
+                        price: `${menuItem?.base_price}` || "",
+                        amount: Count,
+                      },
+                    ]);
+                  }
+                }}
+                width={"full"}
+                font={"bold"}
+              >
                 Add to Cart
               </Button>
             </div>
@@ -109,12 +165,12 @@ export default function page({
 
       <div
         style={{
-          backgroundImage: `url(https://picsum.photos/400/500)`,
+          backgroundImage: `url(${menuItem?.image || ""})`,
         }}
         className="w-full sm:hidden h-[18em] absolute top-0 left-0 bg-fixed bg-cover bg-white"
       >
         <div className="fixed top-4 left-4">
-          <Link href={`/${params.restaurantId}`}>
+          <Link href={`/${params.restaurantId}/${menuItem?.category_id}`}>
             <IconButton size={"md"} className="shadow-xl" intent={"white"}>
               <FiChevronLeft size={25} />
             </IconButton>

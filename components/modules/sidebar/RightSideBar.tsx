@@ -13,11 +13,10 @@ import { useOrderContext } from "@/components/pages/layouts/MainLayoutWrapper";
 
 export default function RightSideBar() {
   const route = useSelectedLayoutSegment();
+  const { Orders, setOrders } = useOrderContext();
   const [OpenModal, setOpenModal] = useState(false);
 
   const isMobile = FMbreakPoint("(max-width: 1124px)");
-
-  const { Orders, setOrders } = useOrderContext();
 
   if (route !== "(checkout)")
     return (
@@ -30,7 +29,7 @@ export default function RightSideBar() {
           }}
           transition={{
             type: "just",
-            duration: 0.4,
+            duration: 0.2,
           }}
         >
           <div className="bg-white"></div>
@@ -43,6 +42,7 @@ export default function RightSideBar() {
               rounded={"full"}
               size={"sm"}
               onClick={() => setOpenModal(!OpenModal)}
+              className="lg:hidden"
             >
               <IoClose size={26} />
             </IconButton>
@@ -50,12 +50,10 @@ export default function RightSideBar() {
 
           <div className="flex p-4 flex-col gap-5">
             <div className="flex flex-col gap-4 mt-5">
-              {Orders.map((order) => (
+              {Orders.map((order, index) => (
                 <OrderCard
-                  category={order.category}
-                  img={order.image}
-                  price={order.price}
-                  title={order.name}
+                  key={order._id + index + order.amount}
+                  order={order}
                 />
               ))}
             </div>
@@ -65,11 +63,18 @@ export default function RightSideBar() {
             <div className="flex text-xl gap-3 flex-col">
               <div className="flex justify-between items-center">
                 <div className="text-zinc-400">Amount</div>
-                <div className="font-bold">4 Items</div>
+                <div className="font-bold">
+                  {Orders.reduce((acc, curr) => acc + curr.amount, 0)} Items
+                </div>
               </div>
               <div className="flex justify-between items-center">
                 <div className="text-zinc-400">Order Price</div>
-                <div className="font-bold">36.000 IQD</div>
+                <div className="font-bold">
+                  {Orders.map(
+                    (order: any) => order.price * order.amount
+                  ).reduce((acc, curr) => acc + curr, 0) }{" "}
+                  IQD
+                </div>
               </div>
               <div className="flex justify-between items-center">
                 <div className="text-zinc-400">Delivery</div>
@@ -82,7 +87,14 @@ export default function RightSideBar() {
             <div className="flex justify-between font-bold text-xl">
               <div>Total Price</div>
 
-              <div>41.000 IQD</div>
+              <div>
+                {Orders.map((order: any) => order.price * order.amount).reduce(
+                  (acc, curr) => acc + curr,
+                  0
+                )  +
+                  5000}{" "}
+                IQD
+              </div>
             </div>
 
             <div className="h-[.08em] w-full rounded-full bg-zinc-300 px-10" />
@@ -123,7 +135,7 @@ export default function RightSideBar() {
         <IconButton
           intent={"primary"}
           rounded={"full"}
-          className="fixed right-5 bottom-24 "
+          className="fixed right-5 z-30 bottom-24 "
           size={"lg"}
           onClick={() => setOpenModal(!OpenModal)}
         >

@@ -1,8 +1,6 @@
-"use client";
 import LeftSideBar from "@/components/modules/sidebar/LeftSideBar";
 import React from "react";
 import MainNavBar from "../../modules/nav/MainNavBar";
-import { AnimatePresence, motion } from "framer-motion";
 import RightSideBar from "@/components/modules/sidebar/RightSideBar";
 import BottomNavigation from "@/components/modules/bottomnav/BottomNavigation";
 import MainContextWrapper from "./MainLayoutWrapper";

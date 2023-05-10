@@ -59,8 +59,9 @@ export function getCategoryBySubdomain(subdomain: string, categoryId: string) {
 
   const category = restaurant.Menu.flatMap((menu) => menu.categories).find(
     (cat) =>
+      cat._id === categoryId ||
       cat.name.toLocaleLowerCase().replace(" ", "-") ===
-      categoryId.toLocaleLowerCase().replace(" ", "-")
+        categoryId.toLocaleLowerCase().replace(" ", "-")
   );
 
   return category;
@@ -85,19 +86,27 @@ export function getCategoryItemsCountBySubdomain(
   return category?.items.length;
 }
 
-export function getMenuItem(subdomain: string, menuItemId: string) {
+export function getMenuItem(subdomain: string, itemId: string) {
+  const cleanedSubdomain = subdomain.replace(/-/g, " ").toLowerCase();
+  const cleanedItemId = itemId.replace(/-/g, " ").toLowerCase();
+
   const restaurant = data.find(
-    (restaurantData) => restaurantData.Restaurant.subdomain === subdomain
+    (restaurantData) =>
+      restaurantData.Restaurant.subdomain.replace(/-/g, " ").toLowerCase() ===
+      cleanedSubdomain
   );
-  menuItemId = menuItemId.replace("-", " ").toLocaleLowerCase();
+
   if (!restaurant) {
     return null;
   }
 
-  // Get the menu of the restaurant
-  const menu = restaurant.Menu;
-
-  const menuItem = menu
+  const menuItem = restaurant.Menu.flatMap((menu) => menu.categories)
+    .flatMap((category) => category.items)
+    .find(
+      (item) =>
+        item._id.replace(/-/g, " ").toLowerCase() === cleanedItemId ||
+        item.name.replace(/-/g, " ").toLowerCase() === cleanedItemId
+    );
 
   return menuItem;
 }
