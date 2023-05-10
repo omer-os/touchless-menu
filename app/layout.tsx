@@ -1,4 +1,4 @@
-import MainLayout from "@/components/pages/layouts/MainLayout";
+import MainLayout from "@/components/pages/layouts/MainContextWrapper";
 import "@styles/globals.css";
 import { Roboto } from "next/font/google";
 

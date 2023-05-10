@@ -9,20 +9,24 @@ import IconButton from "@/components/elements/iconbutton/IconButton";
 import { AiOutlineShopping } from "react-icons/ai";
 import FMbreakPoint from "@/lib/hooks/FMbreakPoint";
 import { IoClose } from "react-icons/io5";
+import { useOrderContext } from "@/components/pages/layouts/MainLayoutWrapper";
 
 export default function RightSideBar() {
   const route = useSelectedLayoutSegment();
-  const [OpenModal, setOpenModal] = useState(true);
+  const [OpenModal, setOpenModal] = useState(false);
 
   const isMobile = FMbreakPoint("(max-width: 1124px)");
+
+  const { Orders, setOrders } = useOrderContext();
 
   if (route !== "(checkout)")
     return (
       <>
         <motion.div
-          className={`border-l lg:sticky right-0 fixed bg-white lg:w-auto w-full left-0 lg:h-auto  overflow-y-scroll transition-all h-[80vh] bottom-0 rounded-t-xl z-50`}
+          className={`border-l lg:sticky right-0 fixed bg-white lg:w-auto w-full left-0 lg:h-auto overflow-y-scroll transition-all h-[80vh] bottom-0 rounded-t-xl z-50`}
+          initial={{ bottom: "-100%" }}
           animate={{
-            y: OpenModal && isMobile ? "0" : "100%",
+            bottom: OpenModal && isMobile ? "0%" : "-100%",
           }}
           transition={{
             type: "just",
@@ -46,24 +50,14 @@ export default function RightSideBar() {
 
           <div className="flex p-4 flex-col gap-5">
             <div className="flex flex-col gap-4 mt-5">
-              <OrderCard
-                category="burgers"
-                img="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YnVyZ2VyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                price="12.000 IQD"
-                title="classic x burger"
-              />
-              <OrderCard
-                category="burgers"
-                img="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YnVyZ2VyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                price="12.000 IQD"
-                title="classic x burger"
-              />
-              <OrderCard
-                category="burgers"
-                img="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YnVyZ2VyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                price="12.000 IQD"
-                title="classic x burger"
-              />
+              {Orders.map((order) => (
+                <OrderCard
+                  category={order.category}
+                  img={order.image}
+                  price={order.price}
+                  title={order.name}
+                />
+              ))}
             </div>
 
             <div className="h-[.08em] w-full rounded-full bg-zinc-300 px-10" />
@@ -117,6 +111,9 @@ export default function RightSideBar() {
               exit={{
                 opacity: 0,
               }}
+              transition={{
+                delay: 0.4,
+              }}
               onClick={() => setOpenModal(false)}
               className="fixed z-40 bottom-0 left-0 w-full h-full lg:hidden bg-black/50"
             />
@@ -126,8 +123,8 @@ export default function RightSideBar() {
         <IconButton
           intent={"primary"}
           rounded={"full"}
-          className="fixed right-4 bottom-20"
-          size={"md"}
+          className="fixed right-5 bottom-24 "
+          size={"lg"}
           onClick={() => setOpenModal(!OpenModal)}
         >
           <AiOutlineShopping size={24} />

@@ -84,3 +84,20 @@ export function getCategoryItemsCountBySubdomain(
 
   return category?.items.length;
 }
+
+export function getMenuItem(subdomain: string, menuItemId: string) {
+  const restaurant = data.find(
+    (restaurantData) => restaurantData.Restaurant.subdomain === subdomain
+  );
+  menuItemId = menuItemId.replace("-", " ").toLocaleLowerCase();
+  if (!restaurant) {
+    return null;
+  }
+
+  // Get the menu of the restaurant
+  const menu = restaurant.Menu;
+
+  const menuItem = menu
+
+  return menuItem;
+}

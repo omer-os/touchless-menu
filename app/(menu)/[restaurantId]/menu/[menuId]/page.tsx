@@ -3,6 +3,7 @@ import AmountCounter from "@/components/blocks/Counter/AmountCounter";
 import FoodOption from "@/components/blocks/FoodOption/FoodOption";
 import Button from "@/components/elements/button/Button";
 import IconButton from "@/components/elements/iconbutton/IconButton";
+import { useOrderContext } from "@/components/pages/layouts/MainLayoutWrapper";
 import Link from "next/link";
 import React, { useState } from "react";
 import { FaShopify } from "react-icons/fa";
@@ -17,6 +18,7 @@ export default function page({
   };
 }) {
   const [Count, setCount] = useState(1);
+  const { Orders, setOrders } = useOrderContext();
 
   return (
     <div className="">
@@ -31,10 +33,11 @@ export default function page({
 
           <div className="flex relative z-30 flex-col mt-6">
             <h1 className="sm:text-2xl text-xl font-bold capitalize">
-              Classic Burger
+              Classic Burger with Cheese
             </h1>
             <div className="text-zinc-400 mt-2 sm:text-lg">
-              Beef patty, lettuce, tomato, onion, and pickles
+              Beef Patty, Cheese, Lettuce, Tomato, Onion, Pickles, Ketchup,
+              Mustard
             </div>
           </div>
         </div>
@@ -46,9 +49,7 @@ export default function page({
 
           <div className="flex mt-4 justify-between items-center w-full">
             <div className="flex flex-col">
-              <div className="text-lg  font-semibold text-zinc-500">
-                classic
-              </div>
+              <div className="text-lg  font-semibold text-zinc-500">class</div>
               <div className="flex mt-2 gap-2">
                 <FoodOption
                   className="text-xs"
@@ -108,7 +109,7 @@ export default function page({
 
       <div
         style={{
-          backgroundImage: "url(https://picsum.photos/1000/900)",
+          backgroundImage: `url(https://picsum.photos/400/500)`,
         }}
         className="w-full sm:hidden h-[18em] absolute top-0 left-0 bg-fixed bg-cover bg-white"
       >
