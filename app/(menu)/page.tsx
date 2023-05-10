@@ -1,12 +1,10 @@
-import { baseUrl } from "@/pages/api/BaseUrl";
+import { getAllRestaurants } from "@/lib/GetData";
 import Link from "next/link";
 import React from "react";
 
 export default async function page() {
-  const res = await fetch(`${baseUrl}/api/restaurants`, {
-    cache: "no-cache",
-  });
-  const restaurants: INTRestaurant[] = await res.json();
+  const restaurants = getAllRestaurants();
+
   return (
     <div className="pt-6">
       <div className="text-2xl font-bold capitalize">Available restaurants</div>

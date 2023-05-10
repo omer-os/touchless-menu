@@ -1,4 +1,4 @@
-import { baseUrl } from "@/pages/api/BaseUrl";
+import { getCategoriesBySubdomain } from "@/lib/GetData";
 import ScrollableCategoriesListWrapper from "./ScrollableCategoriesListWrapper";
 
 type PageProps = {
@@ -6,12 +6,8 @@ type PageProps = {
 };
 
 export default async function CategoriesList({ restaurantId }: PageProps) {
-  const res = await fetch(
-    `${baseUrl}/api/restaurants/${restaurantId}/categories`, {
-      cache: "no-cache",
-    }
-  );
-  const categories: INTcategory = await res.json();
+  const Categories=
+    getCategoriesBySubdomain(restaurantId);
 
   return (
     <div className="flex flex-col gap-2">
@@ -23,7 +19,7 @@ export default async function CategoriesList({ restaurantId }: PageProps) {
       </div>
 
       <ScrollableCategoriesListWrapper
-        categories={categories}
+        categories={Categories}
         restaurantId={restaurantId}
       />
     </div>

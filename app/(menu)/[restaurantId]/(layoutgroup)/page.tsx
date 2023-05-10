@@ -1,9 +1,8 @@
 import MenuList from "@/components/templates/menulist/MenuList";
-import { baseUrl } from "@/pages/api/BaseUrl";
-import { AllRestaurants } from "@/pages/api/restaurants";
+import { getAllRestaurants } from "@/lib/GetData";
 
 export async function generateStaticParams() {
-  const res = AllRestaurants;
+  const AllRestaurants = getAllRestaurants();
 
   return AllRestaurants.map((restaurant) => ({
     slug: restaurant.name,
@@ -15,19 +14,14 @@ type Props = {
     restaurantId: string;
     categoryname: string;
   };
-
-  searchParams: {
-    category?: string;
-  };
 };
 
-export default async function page({ params, searchParams }: Props) {
+export default function page({ params }: Props) {
   return (
     <div>
-      {/* @ts-expect-error - Server Component */}
       <MenuList
         restaurantId={params.restaurantId}
-        categoryname={searchParams.category || ""}
+        categoryname={params.categoryname}
       />
     </div>
   );

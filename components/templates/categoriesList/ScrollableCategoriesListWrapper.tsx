@@ -8,7 +8,7 @@ export default function ScrollableCategoriesListWrapper({
   categories,
   restaurantId,
 }: {
-  categories: any;
+  categories: INTcategory[] | null;
   restaurantId: string;
 }) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -61,27 +61,19 @@ export default function ScrollableCategoriesListWrapper({
           ref={scrollContainerRef}
           className="flex scroll-pl-10 snap-x snap-mandatory p-1 pb-4 gap-4 overflow-x-scroll"
         >
-          {categories.map(
-            (
-              category: {
-                _id: string;
-                name: string;
-                image: string;
-                items: number;
-              },
-              index: number
-            ) => (
-              <MenuCategoryCard
-                key={category._id}
-                name={category.name}
-                href={`/${restaurantId}/${category.name}`}
-                img={category.image}
-                numberOfItems={category.items}
-                intent={"regular"}
-                className="snap-start"
-              />
-            )
-          )}
+          {categories?.map((category, index) => (
+            <MenuCategoryCard
+              key={category._id}
+              name={category.name}
+              href={`/${restaurantId}/${category.name
+                .replace(/\s+/g, "-")
+                .toLowerCase()}`}
+              img={category.image}
+              numberOfItems={category.items.length}
+              intent={"regular"}
+              className="snap-start"
+            />
+          ))}
         </div>
         {scrollLeft && (
           <div>

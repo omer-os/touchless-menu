@@ -1,26 +1,20 @@
-import { baseUrl } from "@/pages/api/BaseUrl";
+import { getCategoryBySubdomain } from "@/lib/GetData";
 import MenuItemCard from "../../modules/cards/MenuItemCard";
 import React from "react";
 
-export default async function MenuList({
+export default function MenuList({
   categoryname,
   restaurantId,
 }: {
   categoryname: string;
   restaurantId: string;
 }) {
-  const Res = await fetch(
-    `${baseUrl}/api/restaurants/${restaurantId}/categories/${categoryname}`,
-    {
-      cache: "no-cache",
-    }
-  );
-  const menus: INTcategory = await Res.json();
+  const menus = getCategoryBySubdomain(restaurantId, categoryname);
 
   return (
     <div className="flex flex-col md:mt-0 mt-2">
       <div className="grid  xl:grid-cols-3 grid-cols-2 md:gap-4 gap-6">
-        {menus.items?.map((menu, index) => (
+        {menus?.items.map((menu, index) => (
           <MenuItemCard
             key={menu._id + index}
             title={menu.name}
