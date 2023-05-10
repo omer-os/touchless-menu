@@ -7,7 +7,7 @@ import { useOrderContext } from "@/components/pages/layouts/MainLayoutWrapper";
 import { getMenuItem } from "@/lib/GetData";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { FaShopify } from "react-icons/fa";
+import { BiShoppingBag } from "react-icons/bi";
 import { FiChevronLeft } from "react-icons/fi";
 
 export default function page({
@@ -42,7 +42,10 @@ export default function page({
     <div className="">
       <div className="flex sm:static absolute top-60 left-0 w-full sm:px-0 px-6 z-50 rounded-t-2xl bg-white p-3 flex-wrap gap-5 pb-10">
         <div className="flex w-full md:w-max flex-col">
-          <Link className="mb-4 w-max" href={`/${params.restaurantId}/${menuItem?.category_id}`}>
+          <Link
+            className="mb-4 w-max"
+            href={`/${params.restaurantId}/${menuItem?.category_id}`}
+          >
             <Button
               size={"md"}
               className="sm:flex hidden shadow-xl"
@@ -118,13 +121,12 @@ export default function page({
             <div className="h-[0.07em] mt-5 w-full rounded-full bg-zinc-300" />
 
             <div className="sm:text-2xl text-xl mt-2 font-bold">
-              Total Price :{" "}
-              {(menuItem?.base_price || 0) * Count  } IQD
+              Total Price : {(menuItem?.base_price || 0) * Count} IQD
             </div>
 
             <div className="flex mt-3 gap-3">
               <IconButton>
-                <FaShopify size={25} />
+                <BiShoppingBag size={25} />
               </IconButton>
 
               <Button

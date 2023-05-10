@@ -19,4 +19,5 @@ Default.args = {
   img: "https://images.unsplash.com/photo-1682687982134-2ac563b2228b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60",
   title: "Beef Burger",
   price: "12.000 IQD",
+  link: "/",
 };

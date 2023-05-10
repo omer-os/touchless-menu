@@ -7,16 +7,19 @@ import {
   OrderInterface,
   useOrderContext,
 } from "@/components/pages/layouts/MainLayoutWrapper";
+import IconButton from "@/components/elements/iconbutton/IconButton";
+import { RiDeleteBinLine } from "react-icons/ri";
 
 const OrderCardStyles = cva(`flex gap-3 w-full relative`, {
   variants: {
     intent: {
       primary: ``,
+      filled: "",
     },
-  },
 
-  defaultVariants: {
-    intent: "primary",
+    size: {
+      sm: "w-[10rem] h-[10rem]",
+    },
   },
 });
 
@@ -26,12 +29,17 @@ interface MenuItemCardProps
   order: OrderInterface;
 }
 
-export default function OrderCard({ order, className }: MenuItemCardProps) {
+export default function OrderCard({
+  order,
+  className,
+  intent,
+}: MenuItemCardProps) {
   const [count, setCount] = useState(order.amount);
   const { Orders, setOrders } = useOrderContext();
 
   const styles = OrderCardStyles({
     className,
+    intent,
   });
 
   useEffect(() => {
@@ -48,6 +56,18 @@ export default function OrderCard({ order, className }: MenuItemCardProps) {
 
   return (
     <div className={styles}>
+      <div className="absolute top-2 right-2">
+        <IconButton
+          onClick={() => {
+            setOrders((prev) => prev.filter((item) => item._id !== order._id));
+          }}
+          size={"sm"}
+          intent={"semiGhost"}
+        >
+          <RiDeleteBinLine />
+        </IconButton>
+      </div>
+
       <div className="w-[8rem] h-[7rem] rounded-lg">
         <img
           src={order.image}

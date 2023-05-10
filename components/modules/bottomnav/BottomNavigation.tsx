@@ -7,7 +7,7 @@ import { HiOutlineSquares2X2 } from "react-icons/hi2";
 import { IoCallOutline } from "react-icons/io5";
 
 const style = cva(
-  "flex justify-between drop-shadow-2xl items-center py-2 px-6 fixed sm:hidden bottom-0 left-0 right-0 bg-white",
+  "flex justify-between drop-shadow-2xl items-center py-2 px-6 fixed sm:hidden bottom-0 z-40 left-0 right-0 bg-white",
   {
     variants: {},
   }

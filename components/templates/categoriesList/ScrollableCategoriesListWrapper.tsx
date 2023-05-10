@@ -62,7 +62,7 @@ export default function ScrollableCategoriesListWrapper({
       <div className="relative p-3">
         <div
           ref={scrollContainerRef}
-          className="flex scroll-pl-10 snap-x snap-mandatory p-1 pb-4 gap-4 overflow-x-scroll"
+          className="flex scroll-pl-10 snap-x snap-mandatory p-1 pb-5 gap-4 overflow-x-scroll"
         >
           {categories?.map((category, index) => (
             <MenuCategoryCard
