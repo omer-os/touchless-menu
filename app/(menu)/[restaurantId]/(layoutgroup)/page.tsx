@@ -1,12 +1,11 @@
 import MenuList from "@/components/templates/menulist/MenuList";
 import { baseUrl } from "@/pages/api/BaseUrl";
+import { AllRestaurants } from "@/pages/api/restaurants";
 
 export async function generateStaticParams() {
-  const res = await fetch(`${baseUrl}/api/restaurants`);
+  const res = AllRestaurants;
 
-  const restaurants: INTRestaurant[] = await res.json();
-
-  return restaurants.map((restaurant) => ({
+  return AllRestaurants.map((restaurant) => ({
     slug: restaurant.name,
   }));
 }
