@@ -32,6 +32,7 @@
     "@storybook/nextjs": "7.0.9",
     "@storybook/react": "7.0.9",
     "@storybook/testing-library": "0.0.14-next.2",
-    "storybook": "7.0.9"
+    "storybook": "7.0.9",
+    "tsconfig-paths-webpack-plugin": "^4.0.1"
   }
 }

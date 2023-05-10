@@ -9,6 +9,8 @@ export const buttonStyles = cva(
   active:brightness-90 
   hover:brightness-110
   flex items-center gap-2
+  justify-center
+
 `,
   {
     variants: {

@@ -16,10 +16,12 @@ export default function page({ params }: Props) {
         <Suspense fallback={<div className="flex flex-col gap-2"></div>}>
           <div className="text-2xl font-bold mt-4">Menu</div>
 
-          <MenuList
-            restaurantId={params.restaurantId}
-            categoryname={params.categoryname}
-          />
+          {params.categoryname && (
+            <MenuList
+              restaurantId={params.restaurantId}
+              categoryname={params.categoryname}
+            />
+          )}
         </Suspense>
       )}
     </div>

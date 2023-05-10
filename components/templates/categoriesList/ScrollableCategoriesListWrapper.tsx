@@ -3,6 +3,7 @@ import { useRef, useState, useEffect } from "react";
 import IconButton from "../../elements/iconbutton/IconButton";
 import MenuCategoryCard from "../../modules/cards/MenuCategoryCard";
 import { FiArrowRight, FiArrowLeft } from "react-icons/fi";
+import { usePathname, useSelectedLayoutSegment } from "next/navigation";
 
 export default function ScrollableCategoriesListWrapper({
   categories,
@@ -14,6 +15,8 @@ export default function ScrollableCategoriesListWrapper({
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [scrollLeft, setScrollLeft] = useState(false);
   const [scrollRight, setScrollRight] = useState(true);
+
+  const pathname = useSelectedLayoutSegment();
 
   const handleScroll = () => {
     if (!scrollContainerRef.current) return;
@@ -70,7 +73,11 @@ export default function ScrollableCategoriesListWrapper({
                 .toLowerCase()}`}
               img={category.image}
               numberOfItems={category.items.length}
-              intent={"regular"}
+              intent={
+                pathname === category.name.toLowerCase().replace(/\s+/g, "-")
+                  ? "selected"
+                  : "regular"
+              }
               className="snap-start"
             />
           ))}

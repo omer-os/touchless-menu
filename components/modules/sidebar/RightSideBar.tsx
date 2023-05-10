@@ -1,35 +1,50 @@
 "use client";
+
 import OrderCard from "../cards/OrderCard";
 import ButtonLink from "@/components/elements/link/ButtonLink";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useSelectedLayoutSegment } from "next/navigation";
 import { useState } from "react";
+import IconButton from "@/components/elements/iconbutton/IconButton";
+import { AiOutlineShopping } from "react-icons/ai";
+import FMbreakPoint from "@/lib/hooks/FMbreakPoint";
+import { IoClose } from "react-icons/io5";
 
 export default function RightSideBar() {
   const route = useSelectedLayoutSegment();
-  const [OpenModal, setOpenModal] = useState(false);
+  const [OpenModal, setOpenModal] = useState(true);
+
+  const isMobile = FMbreakPoint("(max-width: 1124px)");
 
   if (route !== "(checkout)")
     return (
       <>
-        <div
-          key={"oierbouetnoi"}
-          className={`
-        
-        border-l p-4 lg:sticky right-0 fixed   
-        bg-white lg:w-auto w-full left-0 lg:h-auto  overflow-y-scroll 
-transition-all 
-h-[80vh] rounded-t-xl
-
-${OpenModal ? "bottom-0 " : "-bottom-full"}
-z-50
-`}
+        <motion.div
+          className={`border-l lg:sticky right-0 fixed bg-white lg:w-auto w-full left-0 lg:h-auto  overflow-y-scroll transition-all h-[80vh] bottom-0 rounded-t-xl z-50`}
+          animate={{
+            y: OpenModal && isMobile ? "0" : "100%",
+          }}
+          transition={{
+            type: "just",
+            duration: 0.4,
+          }}
         >
           <div className="bg-white"></div>
 
-          <div className="text-2xl capitalize font-bold">your orders</div>
+          <div className="flex justify-between items-center sticky top-0 px-4 py-3 left-0 w-full z-20 bg-white">
+            <div className="text-2xl capitalize font-bold">your orders</div>
 
-          <div className="flex flex-col gap-5">
+            <IconButton
+              intent={"white"}
+              rounded={"full"}
+              size={"sm"}
+              onClick={() => setOpenModal(!OpenModal)}
+            >
+              <IoClose size={26} />
+            </IconButton>
+          </div>
+
+          <div className="flex p-4 flex-col gap-5">
             <div className="flex flex-col gap-4 mt-5">
               <OrderCard
                 category="burgers"
@@ -88,16 +103,35 @@ z-50
               Checkout
             </ButtonLink>
           </div>
-        </div>
-        {OpenModal && (
-          <motion.div
-            onClick={() => setOpenModal(false)}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50"
-          />
-        )}
+        </motion.div>
+
+        <AnimatePresence>
+          {OpenModal && isMobile && (
+            <motion.div
+              animate={{
+                opacity: 1,
+              }}
+              initial={{
+                opacity: 0,
+              }}
+              exit={{
+                opacity: 0,
+              }}
+              onClick={() => setOpenModal(false)}
+              className="fixed z-40 bottom-0 left-0 w-full h-full lg:hidden bg-black/50"
+            />
+          )}
+        </AnimatePresence>
+
+        <IconButton
+          intent={"primary"}
+          rounded={"full"}
+          className="fixed right-4 bottom-20"
+          size={"md"}
+          onClick={() => setOpenModal(!OpenModal)}
+        >
+          <AiOutlineShopping size={24} />
+        </IconButton>
       </>
     );
   else return <></>;

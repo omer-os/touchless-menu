@@ -9,7 +9,9 @@ export default function MenuList({
   categoryname: string;
   restaurantId: string;
 }) {
-  const menus = getCategoryBySubdomain(restaurantId, categoryname);
+  const menus = categoryname
+    ? getCategoryBySubdomain(restaurantId, categoryname)
+    : null;
 
   return (
     <div className="flex flex-col md:mt-0 mt-2">
@@ -20,7 +22,9 @@ export default function MenuList({
             title={menu.name}
             img={menu.image}
             price={menu.base_price.toString()}
-            link={`/restaurants/${restaurantId}/menu/${menu.name}`}
+            link={`/${restaurantId}/menu/${menu.name
+              .toLocaleLowerCase()
+              .replace(/\s/g, "-")}`}
           />
         ))}
       </div>
