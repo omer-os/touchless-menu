@@ -2,6 +2,7 @@ import IconButton from "@/components/elements/iconbutton/IconButton";
 import { HiOutlineSquares2X2 } from "react-icons/hi2";
 import { FiPhone } from "react-icons/fi";
 import Link from "next/link";
+import { HiOutlineShoppingCart } from "react-icons/hi";
 
 export default function LeftSideBar() {
   return (
@@ -22,6 +23,10 @@ export default function LeftSideBar() {
         </Link>
         <IconButton intent={"ghost"}>
           <FiPhone className="text-zinc-500" size={24} />
+        </IconButton>
+
+        <IconButton className="lg:hidden" intent={"ghost"}>
+          <HiOutlineShoppingCart className="text-zinc-500" size={24} />
         </IconButton>
       </div>
     </div>

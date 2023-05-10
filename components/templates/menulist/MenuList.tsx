@@ -10,10 +10,10 @@ type MenuType = {
 
 export default function MenuList({ menus }: { menus: MenuType[] }) {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col md:mt-0 mt-2">
       <div className="text-2xl font-bold">Menu</div>
 
-      <div className="grid mt-4 xl:grid-cols-3 grid-cols-2 gap-4">
+      <div className="grid mt-4 xl:grid-cols-3 grid-cols-2 md:gap-4 gap-6">
         {menus.map((menu, index) => (
           <MenuItemCard
             key={menu.link + index}

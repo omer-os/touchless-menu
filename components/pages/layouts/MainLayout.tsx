@@ -4,6 +4,7 @@ import React from "react";
 import MainNavBar from "../../modules/nav/MainNavBar";
 import { AnimatePresence, motion } from "framer-motion";
 import RightSideBar from "@/components/modules/sidebar/RightSideBar";
+import BottomNavigation from "@/components/modules/bottomnav/BottomNavigation";
 
 export default function MainLayout({
   children,
@@ -26,16 +27,15 @@ export default function MainLayout({
 
     "
     >
-      <>
-        <LeftSideBar key={"jrblibrbiyrugv"} />
+      <LeftSideBar key={"jrblibrbiyrugv"} />
 
-        <div key={"ojuerbpiuqeyvfrnoi"} className="flex flex-col flex-1">
-          <MainNavBar />
-          <div className="py-4 sm:px-7 px-4 overflow-y-scroll">{children}</div>
-        </div>
+      <div key={"ojuerbpiuqeyvfrnoi"} className="flex flex-col flex-1">
+        <MainNavBar />
+        <div className="py-4 pb-24 sm:px-7 px-4 overflow-y-scroll">{children}</div>
+        <BottomNavigation />
+      </div>
 
-        <RightSideBar />
-      </>
+      <RightSideBar />
     </div>
   );
 }

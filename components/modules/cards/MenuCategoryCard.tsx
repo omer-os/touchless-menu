@@ -14,12 +14,12 @@ interface Props
 }
 
 const styles = cva(
-  `rounded-lg transition-all flex flex-col items-center justify-center  text-center`,
+  `rounded-lg transition-all flex flex-col items-center shadow-lg hover:shadow-xl sm:hover:scale-105 justify-center snap-start text-center`,
   {
     variants: {
       size: {
         sm: "min-w-[7rem] h-28",
-        md: "min-w-[8rem] h-32",
+        md: "md:min-w-[8rem] min-w-[7rem] md:h-32 h-28",
         lg: "min-w-[9rem] h-36",
         xl: "min-w-[10rem] h-40",
       },

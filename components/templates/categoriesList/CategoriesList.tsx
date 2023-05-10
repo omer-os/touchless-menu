@@ -58,7 +58,7 @@ export default function CategoriesList(props: { categories: categoryType[] }) {
 
   return (
     <div className="flex flex-col gap-2">
-      <div className="flex justify-between items-baseline">
+      <div className="flex justify-between items-baseline md:mt-0 mt-6">
         <div className="text-2xl font-bold">Categories</div>
         <div className="text-blue-500 hover:underline cursor-pointer">
           See all
@@ -68,7 +68,7 @@ export default function CategoriesList(props: { categories: categoryType[] }) {
       <div className="relative p-3">
         <div
           ref={scrollContainerRef}
-          className="flex p-1 pb-2 gap-4 overflow-x-scroll"
+          className="flex scroll-pl-10 snap-x snap-mandatory p-1 pb-4 gap-4 overflow-x-scroll"
         >
           {props.categories.map((category, index) => (
             <MenuCategoryCard
