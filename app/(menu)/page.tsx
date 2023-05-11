@@ -9,7 +9,7 @@ export default async function page() {
     <div className="pt-6">
       <div className="text-2xl font-bold capitalize">Available restaurants</div>
 
-      <ol className="list-decimal text-blue-500 underline text-lg mt-2 list-inside">
+      <ol className="mt-2 text-lg text-blue-500 underline list-decimal list-inside">
         {restaurants.map((restaurant) => (
           <li className="" key={restaurant._id}>
             <Link href={`/${restaurant.subdomain}/`}>{restaurant.name}</Link>

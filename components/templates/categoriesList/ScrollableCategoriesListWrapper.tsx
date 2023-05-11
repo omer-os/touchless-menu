@@ -62,11 +62,11 @@ export default function ScrollableCategoriesListWrapper({
       <div className="relative p-3">
         <div
           ref={scrollContainerRef}
-          className="flex scroll-pl-10 snap-x snap-mandatory p-1 pb-5 gap-4 overflow-x-scroll"
+          className="flex gap-4 p-1 pb-5 overflow-x-scroll scroll-pl-10 snap-x snap-mandatory"
         >
           {categories?.map((category, index) => (
             <MenuCategoryCard
-              key={category._id}
+              key={category._id + index}
               name={category.name}
               href={`/${restaurantId}/${category.name
                 .replace(/\s+/g, "-")
@@ -74,8 +74,8 @@ export default function ScrollableCategoriesListWrapper({
               img={category.image}
               numberOfItems={category.items.length}
               intent={
-                pathname === category.name.toLowerCase().replace(/\s+/g, "-")
-                || pathname === category._id
+                pathname === category.name.toLowerCase().replace(/\s+/g, "-") ||
+                pathname === category._id
                   ? "selected"
                   : "regular"
               }
@@ -88,7 +88,7 @@ export default function ScrollableCategoriesListWrapper({
             <IconButton
               rounded={"full"}
               intent={"white"}
-              className="absolute shadow-xl top-1/2 z-20 left-2 -translate-y-1/2"
+              className="absolute z-20 -translate-y-1/2 shadow-xl top-1/2 left-2"
               onClick={() => scroll("left")}
             >
               <FiArrowLeft />
@@ -100,7 +100,7 @@ export default function ScrollableCategoriesListWrapper({
             <IconButton
               rounded={"full"}
               intent={"white"}
-              className="absolute shadow-xl top-1/2 z-20 right-2 -translate-y-1/2"
+              className="absolute z-20 -translate-y-1/2 shadow-xl top-1/2 right-2"
               onClick={() => scroll("right")}
             >
               <FiArrowRight />

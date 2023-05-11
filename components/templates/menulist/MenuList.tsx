@@ -9,17 +9,13 @@ export default function MenuList({
   categoryname: string;
   restaurantId: string;
 }) {
-  const menus = categoryname
-    ? getCategoryBySubdomain(restaurantId, categoryname)
-    : {
-        items: [],
-      };
+  const menus = getCategoryBySubdomain(restaurantId, categoryname);
 
   return (
-    <div className="flex flex-col md:mt-3 mt-2">
-      <div className="grid  xl:grid-cols-3 grid-cols-2 md:gap-4 gap-6">
+    <div className="flex flex-col mt-2 md:mt-3">
+      <div className="grid grid-cols-2 gap-6 xl:grid-cols-3 md:gap-4">
         {menus?.items.length === 0 && (
-          <div className="font-bold capitalize text-lg">select a category</div>
+          <div className="text-lg font-bold capitalize">select a category</div>
         )}
         {menus?.items.map((menu, index) => (
           <MenuItemCard

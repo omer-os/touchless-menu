@@ -44,7 +44,7 @@ export function getCategoriesBySubdomain(subdomain: string) {
     return null;
   }
 
-  const categories = restaurant.Menu.flatMap((menu) => menu.categories);
+  const categories = restaurant.Menu?.flatMap((menu) => menu.categories);
   return categories;
 }
 
@@ -60,8 +60,8 @@ export function getCategoryBySubdomain(subdomain: string, categoryId: string) {
   const category = restaurant.Menu.flatMap((menu) => menu.categories).find(
     (cat) =>
       cat._id === categoryId ||
-      cat.name.toLocaleLowerCase().replace(" ", "-") ===
-        categoryId.toLocaleLowerCase().replace(" ", "-")
+      cat.name?.toLocaleLowerCase().replace(" ", "-") ===
+        categoryId?.toLocaleLowerCase().replace(" ", "-")
   );
 
   return category;

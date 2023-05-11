@@ -9,6 +9,7 @@ import {
 } from "@/components/pages/layouts/MainLayoutWrapper";
 import IconButton from "@/components/elements/iconbutton/IconButton";
 import { RiDeleteBinLine } from "react-icons/ri";
+import { motion } from "framer-motion";
 
 const OrderCardStyles = cva(`flex gap-3 w-full relative`, {
   variants: {
@@ -68,22 +69,22 @@ export default function OrderCard({
         </IconButton>
       </div>
 
-      <div className="w-[8rem] h-[7rem] rounded-lg">
+      <div className="w-[6rem] h-[6rem] rounded-lg">
         <img
           src={order.image}
           alt={`Image of ${order.name}`}
-          className="rounded-lg w-full h-full object-cover"
+          className="object-cover w-full h-full rounded-lg"
         />
       </div>
 
-      <div className="flex p-3 flex-col max-w-full">
-        <div className="title text-xl truncate font-bold max-w-[10em]">
+      <div className="flex flex-col max-w-full">
+        <div className="title text-xl truncate font-bold max-w-[8em] sm:max-w-[10em]">
           {order.name}
         </div>
-        <div className="category text-sm text-zinc-400">{order.category}</div>
+        <div className="text-sm category text-zinc-400">{order.category}</div>
 
         <AmountCounter
-          className="mt-auto"
+          className="mt-2"
           State={count}
           setState={setCount}
           min={1}
@@ -91,7 +92,7 @@ export default function OrderCard({
       </div>
 
       <div className="absolute bottom-2 right-2">
-        <div className="price text-primary-600 text-sm font-bold">
+        <div className="text-sm font-bold price text-primary-600">
           {count} x {order.price}
         </div>
       </div>

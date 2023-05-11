@@ -43,7 +43,7 @@ export default function FoodOption({
         <img
           src={img}
           alt={`Image of ${title}`}
-          className="rounded-full w-full h-full"
+          className="w-full h-full rounded-full"
         />
       </div>
 

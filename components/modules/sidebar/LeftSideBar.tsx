@@ -6,16 +6,16 @@ import { HiOutlineShoppingCart } from "react-icons/hi";
 
 export default function LeftSideBar() {
   return (
-    <div className="border-r h-screen p-4 sm:flex flex-col items-center sticky hidden top-0 left-0">
-      <div className="logo w-10 h-10 rounded">
+    <div className="sticky top-0 left-0 flex-col items-center hidden h-screen p-4 border-r sm:flex">
+      <div className="w-10 h-10 rounded logo">
         <img
           src="/images/logo.png"
-          className="w-full h-full object-center object-contain"
+          className="object-contain object-center w-full h-full"
           alt=""
         />
       </div>
 
-      <div className="flex mt-10 flex-col gap-3">
+      <div className="flex flex-col gap-3 mt-10">
         <Link href="/">
           <IconButton intent={"semiGhost"}>
             <HiOutlineSquares2X2 size={24} />

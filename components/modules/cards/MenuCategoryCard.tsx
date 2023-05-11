@@ -49,16 +49,16 @@ export default function MenuCategoryCard(props: Props) {
   const classes = styles({ className, size, intent });
   return (
     <Link href={href} className={`${classes}`}>
-      <div className="img w-10 h-10">
+      <div className="w-10 h-10 img">
         <img
           src={img}
           alt={`Image of ${name}`}
-          className="rounded-lg w-full object-center object-contain h-full"
+          className="object-contain object-center w-full h-full rounded-lg"
         />
       </div>
 
-      <div className="name font-bold">{name}</div>
-      <div className="numberOfItems text-xs text-zinc-400">
+      <div className="font-bold name">{name}</div>
+      <div className="text-xs numberOfItems text-zinc-400">
         {numberOfItems} items
       </div>
     </Link>

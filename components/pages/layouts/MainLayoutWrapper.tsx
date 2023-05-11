@@ -1,4 +1,5 @@
 "use client";
+
 import { createContext, useContext, useState } from "react";
 
 // Define the context and its TypeScript interface
@@ -35,7 +36,7 @@ export default function MainContextWrapper({
         setOrders: setOrders,
       }}
     >
-      {children}
+      <>{children}</>
     </OrderContext.Provider>
   );
 }

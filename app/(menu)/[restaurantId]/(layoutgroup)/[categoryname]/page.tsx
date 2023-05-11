@@ -14,7 +14,7 @@ export default function page({ params }: Props) {
     <div>
       {params.categoryname && (
         <Suspense fallback={<div className="flex flex-col gap-2"></div>}>
-          <div className="text-2xl font-bold mt-4">Menu</div>
+          <div className="mt-4 text-2xl font-bold">Menu</div>
 
           {params.categoryname && (
             <MenuList

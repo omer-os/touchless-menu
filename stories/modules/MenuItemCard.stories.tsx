@@ -7,7 +7,7 @@ export default {
 };
 
 const Template: StoryFn<typeof MenuItemCard> = (args) => (
-  <div className="grid grid-cols-4 gap-5 w-full h-screen">
+  <div className="grid w-full h-screen grid-cols-4 gap-5">
     <MenuItemCard {...args} />
     <MenuItemCard {...args} />
     <MenuItemCard {...args} />

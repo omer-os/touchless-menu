@@ -10,21 +10,10 @@ type Props = {
   children: React.ReactNode;
 };
 
-export function generateStaticParams() {
-  const AllRestaurants = getAllRestaurants();
-
-  return AllRestaurants.map((rest) => ({
-    slug: rest.subdomain,
-  }));
-}
-
 export default async function layout(props: Props) {
   return (
     <>
-      <Suspense fallback={<CategoriesListSkeleton />}>
-        {/* @ts-expect-error - Server Component */}
-        <CategoriesList restaurantId={props.params.restaurantId} />
-      </Suspense>
+      <CategoriesList restaurantId={props.params.restaurantId} />
       {props.children}
     </>
   );

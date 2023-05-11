@@ -42,17 +42,17 @@ export default function MenuItemCard({
       <div className="img md:h-[12em] h-[6em] overflow-hidden">
         <img
           src={img}
-          className="w-full transition-all group-hover:scale-110 h-full object-cover"
+          className="object-cover w-full h-full transition-all group-hover:scale-110"
           alt={`image of ${title}`}
         />
       </div>
 
-      <div className="flex md:py-3 py-2 md:px-5 px-2 flex-col">
+      <div className="flex flex-col px-2 py-2 md:py-3 md:px-5">
         <h1 className="font-bold truncate">{title}</h1>
 
-        <div className="flex gap-2 mt-2 items-baseline">
-          <div className="font-bold text-sm md:text-xl">{price}</div>
-          <div className="md:text-sm text-xs text-gray-500">/person</div>
+        <div className="flex items-baseline gap-2 mt-2">
+          <div className="text-sm font-bold md:text-xl">{price}</div>
+          <div className="text-xs text-gray-500 md:text-sm">/person</div>
         </div>
       </div>
     </Link>
